@@ -1,0 +1,20 @@
+{
+  "add_new_contacts": {
+    "message": "Add new contacts"
+  },
+  "add_contacts": {
+    "message": "Add contacts:"
+  },
+  "results": {
+    "message": "Results"
+  },
+  "page": {
+    "message": "page"
+  },
+  "visit_special": {
+    "message": "Visit the special"
+  },
+  "login": {
+    "message": "Log in to"
+  }
+}

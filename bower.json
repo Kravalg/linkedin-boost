@@ -1,0 +1,23 @@
+{
+  "name": "linkedin-boost",
+  "authors": [
+    "Kravalg <kravtsov.yar@gmail.com>"
+  ],
+  "description": "Work faster with Linkedin Boost",
+  "license": "No License",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "bootstrap-material-design": "^4.0.2",
+    "components-font-awesome": "^4.7.0"
+  },
+  "homepage": "https://github.com/Kravalg/linkedin-boost",
+  "main": ""
+}

@@ -1,0 +1,23 @@
+.hide {
+    display: none;
+}
+
+.link {
+    cursor: pointer;
+    color: rgb(33, 150, 243) !important;
+    display: block;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.link:hover {
+    text-decoration: underline !important;
+}
+
+header {
+    padding: 20px 0 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}

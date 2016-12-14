@@ -1,0 +1,20 @@
+{
+  "add_new_contacts": {
+    "message": "Добавьте новые контакты"
+  },
+  "add_contacts": {
+    "message": "Добавить контакты:"
+  },
+  "results": {
+    "message": "Результаты"
+  },
+  "page": {
+    "message": "страницу"
+  },
+  "visit_special": {
+    "message": "Посетите специальную"
+  },
+  "login": {
+    "message": "Авторизуйтесь в"
+  }
+}

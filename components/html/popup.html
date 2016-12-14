@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/components/css/popup.css">
+    <link rel="stylesheet" type="text/css" href="/components/css/stepper.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-material-design/dist/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container" style="min-width: 300px">
+        <header>
+            <h5>Linkedin <sup class="text-danger">boost</sup></h5>
+        </header>
+
+        <div id="not_linkedin" class="hide">
+            <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-stepper-horizontal-alternative">
+                        <div class="mdl-stepper-step active-step">
+                            <div class="mdl-stepper-circle pointer" data-link-url="https://www.linkedin.com/">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </div>
+                            <div class="mdl-stepper-title">
+                                <span data-translation="login"></span>
+                                <span data-link-url="https://www.linkedin.com" class="link">Linkedin</span>
+                            </div>
+                            <div class="mdl-stepper-bar-left"></div>
+                            <div class="mdl-stepper-bar-right"></div>
+                        </div>
+                        <div class="mdl-stepper-step active-step">
+                            <div class="mdl-stepper-circle pointer" data-link-url="https://www.linkedin.com/people/pymk?trk=nav_responsive_sub_nav_pymk">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="mdl-stepper-title">
+                                <span data-translation="visit_special"></span>
+                                <span
+                                        data-link-url="https://www.linkedin.com/people/pymk?trk=nav_responsive_sub_nav_pymk"
+                                        class="link"
+                                        data-translation="page"
+                                ></span>
+                            </div>
+                            <div class="mdl-stepper-bar-left"></div>
+                            <div class="mdl-stepper-bar-right"></div>
+                        </div>
+                        <div class="mdl-stepper-step active-step step-done">
+                            <div class="mdl-stepper-circle"><i class="fa fa-users" aria-hidden="true"></i></div>
+                            <div class="mdl-stepper-title" data-translation="add_new_contacts"></div>
+                            <div class="mdl-stepper-bar-left"></div>
+                            <div class="mdl-stepper-bar-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="other_linkedin" class="hide">
+            <div class="mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-stepper-horizontal-alternative">
+                        <div class="mdl-stepper-step active-step">
+                            <div data-link-url="https://www.linkedin.com/people/pymk?trk=nav_responsive_sub_nav_pymk"
+                                 class="mdl-stepper-circle pointer">
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </div>
+                            <div class="mdl-stepper-title">
+                                <span data-translation="visit_special"></span>
+                                <span
+                                        data-link-url="https://www.linkedin.com/people/pymk?trk=nav_responsive_sub_nav_pymk"
+                                        class="link"
+                                        data-translation="page"
+                                ></span>
+                            </div>
+                            <div class="mdl-stepper-bar-left"></div>
+                            <div class="mdl-stepper-bar-right"></div>
+                        </div>
+                        <div class="mdl-stepper-step active-step step-done">
+                            <div class="mdl-stepper-circle"><i class="fa fa-users" aria-hidden="true"></i></div>
+                            <div class="mdl-stepper-title" data-translation="add_new_contacts"></div>
+                            <div class="mdl-stepper-bar-left"></div>
+                            <div class="mdl-stepper-bar-right"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="add_contacts" class="hide">
+            <div>
+                <span data-translation="add_contacts"></span>
+                <div class="btn-group-gorizontal">
+                    <button data-add-contacts="50" class="btn btn-raised btn-info">50</button>
+                    <button data-add-contacts="100" class="btn btn-raised btn-info">100</button>
+                    <button data-add-contacts="200" class="btn btn-raised btn-info">200</button>
+                </div>
+            </div>
+            <div id="results" class="panel panel-default hide">
+                <div class="panel-heading" data-translation="results"></div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading"></h4>
+
+                                <p class="list-group-item-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/js/popup.js"></script>
+</body>
+</html>
