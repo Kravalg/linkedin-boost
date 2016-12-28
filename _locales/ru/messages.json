@@ -14,6 +14,9 @@
   "visit_special": {
     "message": "Посетите специальную"
   },
+  "share_friends": {
+    "message": "Поделитесь с друзьями:"
+  },
   "login": {
     "message": "Авторизуйтесь в"
   }

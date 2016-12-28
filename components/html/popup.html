@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/components/css/popup.css">
     <link rel="stylesheet" type="text/css" href="/components/css/stepper.css">
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-material-design/dist/bootstrap-material-design.min.css">
     <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/jssocials/dist/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="/bower_components/jssocials/dist/jssocials-theme-flat.css" />
+    <link rel="stylesheet" type="text/css" href="/components/css/popup.css">
 </head>
 <body>
     <div class="container" style="min-width: 300px">
         <header>
-            <h5>Linkedin <sup class="text-danger">boost</sup></h5>
+            <h5 class="pull-left app-name">Linkedin <sup class="text-danger">boost</sup></h5>
+            <img src="/components/img/christmas_tree.png" class="pull-left">
+            <div class="clearfix"></div>
         </header>
 
         <div id="not_linkedin" class="hide">
@@ -112,9 +116,15 @@
                 </div>
             </div>
         </div>
+
+        <footer>
+            <div data-translation="share_friends"></div>
+            <div id="share_friends"></div>
+        </footer>
     </div>
 
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/components/js/popup.js"></script>
+    <script src="/bower_components/jssocials/dist/jssocials.min.js"></script>
 </body>
 </html>

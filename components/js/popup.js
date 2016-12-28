@@ -60,4 +60,12 @@ $(function() {
     $('[data-link-url]').click(function () {
         openTab(this.getAttribute('data-link-url'));
     });
+
+    $("#share_friends").jsSocials({
+        showLabel: false,
+        showCount: false,
+        shareIn: 'popup',
+        shares: ['linkedin', 'twitter', 'facebook', 'vkontakte', 'googleplus', 'pinterest', 'stumbleupon'],
+        url: 'https://chrome.google.com/webstore/detail/linkedin-boost/hjngmlepjloblimbhocofmodjihjklhf'
+    });
 });

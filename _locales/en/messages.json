@@ -14,6 +14,9 @@
   "visit_special": {
     "message": "Visit the special"
   },
+  "share_friends": {
+    "message": "Share with your friends:"
+  },
   "login": {
     "message": "Log in to"
   }
