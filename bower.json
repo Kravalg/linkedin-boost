@@ -16,7 +16,8 @@
   "dependencies": {
     "jquery": "^2.2.4",
     "bootstrap-material-design": "^4.0.2",
-    "components-font-awesome": "^4.7.0"
+    "components-font-awesome": "^4.7.0",
+    "jssocials": "^1.4.0"
   },
   "homepage": "https://github.com/Kravalg/linkedin-boost",
   "main": ""
