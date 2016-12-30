@@ -1,4 +1,8 @@
-.hide {
+body {
+    background-color: #fff;
+}
+
+.hide-block {
     display: none;
 }
 
@@ -17,19 +21,19 @@
 }
 
 header {
-    padding: 20px 0 5px 0;
-    margin-bottom: 5px;
+    padding: 10px 0 5px 0;
+    margin-bottom: 10px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 }
 
 .app-name {
-    line-height: 60px;
-    margin-left: 55px;
+    line-height: 25px;
+    margin-left: 50px;
     margin-right: 15px;
 }
 
 footer {
-    margin-top: 5px;
+    margin-top: 10px;
     border-top: 1px solid rgba(128, 128, 128, 0.2);
     padding-top: 10px;
     padding-bottom: 10px;
@@ -42,8 +46,80 @@ footer {
 
 footer > div {
     font-size: 12px;
-    color: grey;
     text-align: center;
 }
 
+.text-grey {
+    color: grey;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
 .jssocials-share-link { border-radius: 50%; }
+
+/* Boostrap 3 panels */
+
+.panel-heading, .panel-footer {
+    padding: 5px 15px;
+}
+
+.dropup.caret {
+    content: "";
+    border-top: 0;
+    border-bottom: 4px dashed;
+}
+
+.caret {
+    margin-left: 10px;
+}
+
+.list-group .list-group-item .list-group-item-heading {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+.list-group-item-text {
+    margin-bottom: 0;
+    line-height: 1;
+    font-size: 12px;
+}
+
+#results .list-group-item {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#results .list-group .list-group-item .row-picture {
+    float: left;
+}
+
+#results .list-group .list-group-item .row-content {
+    float: left;
+    min-height: unset;
+    height: auto;
+}
+
+.vertical-scroll {
+    overflow: auto;
+    height: auto;
+    max-height: 260px;
+}
+
+.list-group {
+    margin-bottom: 0;
+}
+
+#number_invited_now {
+    margin-left: 5px;
+}
+
+#number_invited_now:before {
+    content: '(';
+}
+
+#number_invited_now:after {
+    content: ')';
+}

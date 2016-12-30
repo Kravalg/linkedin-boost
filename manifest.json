@@ -11,11 +11,15 @@
     "default_icon": "components/icon.png",
     "default_popup": "components/html/popup.html"
   },
+  "background": {
+    "scripts": ["components/js/background.js"]
+  },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "content_scripts": [{
     "matches": ["*://www.linkedin.com/people/pymk/*", "*://www.linkedin.com/people/pymk?*"],
-    "js": ["bower_components/jquery/dist/jquery.min.js", "components/js/content.js"]
+    "js": ["bower_components/jquery/dist/jquery.min.js", "components/js/class.localstorage.js", "components/js/content.js"]
   }]
 }

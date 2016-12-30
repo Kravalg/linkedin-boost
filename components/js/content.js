@@ -1,11 +1,15 @@
 const contactsNumOnOnePage = 15;
 
+function sendMessageToBackground (obj) {
+    chrome.runtime.sendMessage(obj);
+}
+
 function addContacts(height, countOfPagesScrolled) {
     setTimeout(function () {
         if (countOfPagesScrolled > 0 && height != document.body.clientHeight) {
             scrollDown(document.body.clientHeight, --countOfPagesScrolled);
         } else {
-            console.log(sendRequest());
+            sendRequest();
         }
     }, 1500);
 }
@@ -27,15 +31,20 @@ function sendRequest(){
         jQuery(this).click();
         addedContacts[contactsNum] = {
             initials: jQuery(this).parents('.card-wrapper').find('.picture img').attr('alt'),
-            img: jQuery(this).parents('.card-wrapper').find('.picture img').attr('src')
+            title: jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'),
+            img: jQuery(this).parents('.card-wrapper').find('.picture img').attr('src'),
+            link: jQuery(this).parents('.card-wrapper').find('.picture a').attr('href')
         };
         contactsNum++;
     });
 
-    return {
-        countAdded: contactsNum,
-        addedContacts: addedContacts
-    };
+    sendMessageToBackground({
+        action: 'added_contacts',
+        message: {
+            totalAdded: contactsNum,
+            addedContacts: addedContacts
+        }
+    });
 }
 
 function onRequest(request, sender, sendResponse) {
@@ -46,8 +55,6 @@ function onRequest(request, sender, sendResponse) {
         }
 
         scrollDown(document.body.clientHeight, getNumPages(request.contactsNumber));
-
-        sendResponse({result: true});
     }
 
 }

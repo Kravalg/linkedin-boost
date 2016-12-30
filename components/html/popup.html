@@ -3,21 +3,21 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/components/css/stepper.css">
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap-material-design/dist/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="/components/css/bootstrap-material-design.min.css">
     <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/bower_components/jssocials/dist/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="/bower_components/jssocials/dist/jssocials-theme-flat.css" />
     <link rel="stylesheet" type="text/css" href="/components/css/popup.css">
 </head>
 <body>
-    <div class="container" style="min-width: 300px">
+    <div class="container" style="min-width: 320px">
         <header>
-            <h5 class="pull-left app-name">Linkedin <sup class="text-danger">boost</sup></h5>
+            <h3 class="pull-left app-name">Linkedin <sup class="text-danger">boost</sup></h3>
             <img src="/components/img/christmas_tree.png" class="pull-left">
             <div class="clearfix"></div>
         </header>
 
-        <div id="not_linkedin" class="hide">
+        <div id="not_linkedin" class="hide-block">
             <div class="mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__supporting-text">
                     <div class="mdl-stepper-horizontal-alternative">
@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div id="other_linkedin" class="hide">
+        <div id="other_linkedin" class="hide-block">
             <div class="mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__supporting-text">
                     <div class="mdl-stepper-horizontal-alternative">
@@ -89,27 +89,45 @@
             </div>
         </div>
 
-        <div id="add_contacts" class="hide">
-            <div>
-                <span data-translation="add_contacts"></span>
-                <div class="btn-group-gorizontal">
-                    <button data-add-contacts="50" class="btn btn-raised btn-info">50</button>
-                    <button data-add-contacts="100" class="btn btn-raised btn-info">100</button>
-                    <button data-add-contacts="200" class="btn btn-raised btn-info">200</button>
+        <div id="add_contacts" class="hide-block">
+            <div class="panel panel-info can-toggle">
+                <div class="panel-heading pointer">
+                    <span class="pull-left" data-translation="add_contacts"></span>
+                    <span class="pull-right">
+                        <span class="caret"></span>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <div class="btn-group-gorizontal">
+                        <button data-add-contacts="50" class="btn btn-raised btn-success">50</button>
+                        <button data-add-contacts="100" class="btn btn-raised btn-success">100</button>
+                        <button data-add-contacts="200" class="btn btn-raised btn-success">200</button>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <span data-translation="total_invited" class="text-grey"></span>
+                    <span id="total_added_number" class="text-bold"></span>
                 </div>
             </div>
-            <div id="results" class="panel panel-default hide">
-                <div class="panel-heading" data-translation="results"></div>
-                <div class="panel-body">
+            <div id="results" class="panel panel-info hide-block can-toggle">
+                <div class="panel-heading pointer">
+                    <span class="pull-left" data-translation="results"></span>
+                    <span id="number_invited_now" class="pull-left hide-block">0</span>
+                    <span class="pull-right">
+                        <span class="caret"></span>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body vertical-scroll">
                     <div class="list-group">
                         <div class="list-group-item">
                             <div class="row-picture">
-                                <img class="circle" src="" alt="icon">
+                                <img width="56px" height="56px" class="circle" src="" alt="icon">
                             </div>
                             <div class="row-content">
-                                <h4 class="list-group-item-heading"></h4>
-
-                                <p class="list-group-item-text"></p>
+                                <h6 class="list-group-item-heading text-bold"></h6>
+                                <p class="list-group-item-text text-grey"></p>
                             </div>
                         </div>
                     </div>
@@ -118,12 +136,15 @@
         </div>
 
         <footer>
-            <div data-translation="share_friends"></div>
+            <div data-translation="share_friends" class="text-grey"></div>
             <div id="share_friends"></div>
         </footer>
     </div>
 
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/components/js/material.min.js"></script>
+    <script src="/components/js/class.localstorage.js"></script>
     <script src="/components/js/popup.js"></script>
     <script src="/bower_components/jssocials/dist/jssocials.min.js"></script>
 </body>

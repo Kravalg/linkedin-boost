@@ -3,13 +3,16 @@
     "message": "Add new contacts"
   },
   "add_contacts": {
-    "message": "Add contacts:"
+    "message": "Add contacts"
   },
   "results": {
     "message": "Results"
   },
   "page": {
     "message": "page"
+  },
+  "total_invited": {
+    "message": "Total invited:"
   },
   "visit_special": {
     "message": "Visit the special"

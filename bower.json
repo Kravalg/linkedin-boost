@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "jquery": "^2.2.4",
-    "bootstrap-material-design": "^4.0.2",
+    "bootstrap": "^3.3.7",
     "components-font-awesome": "^4.7.0",
     "jssocials": "^1.4.0"
   },

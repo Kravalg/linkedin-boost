@@ -3,13 +3,16 @@
     "message": "Добавьте новые контакты"
   },
   "add_contacts": {
-    "message": "Добавить контакты:"
+    "message": "Добавить контакты"
   },
   "results": {
     "message": "Результаты"
   },
   "page": {
     "message": "страницу"
+  },
+  "total_invited": {
+    "message": "Всего приглашено:"
   },
   "visit_special": {
     "message": "Посетите специальную"
