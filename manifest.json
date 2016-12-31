@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Linkedin Boost",
   "description": "This Chrome extension helps you to add new contacts in the social network LinkedIn",
-  "version": "0.1",
+  "version": "0.2",
   "default_locale": "en",
   "icons": {
     "128": "components/icon.png"
