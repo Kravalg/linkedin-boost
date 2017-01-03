@@ -24,11 +24,15 @@ header {
     padding: 10px 0 5px 0;
     margin-bottom: 10px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    text-align: center;
+}
+
+header .center-block {
+    display: inline-block;
 }
 
 .app-name {
     line-height: 25px;
-    margin-left: 50px;
     margin-right: 15px;
 }
 
