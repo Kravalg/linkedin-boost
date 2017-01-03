@@ -116,14 +116,22 @@ footer > div {
     margin-bottom: 0;
 }
 
-#number_invited_now {
+.parenthesis {
     margin-left: 5px;
 }
 
-#number_invited_now:before {
+.parenthesis:before {
     content: '(';
 }
 
-#number_invited_now:after {
+.parenthesis:after {
     content: ')';
+}
+
+.form-group {
+    margin-top: 0;
+}
+
+.form-group label.control-label {
+    margin-top: 0;
 }

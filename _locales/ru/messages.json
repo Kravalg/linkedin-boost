@@ -11,6 +11,12 @@
   "page": {
     "message": "страницу"
   },
+  "filters": {
+    "message": "Фильтры"
+  },
+  "profession": {
+    "message": "Профессия"
+  },
   "total_invited": {
     "message": "Всего приглашено:"
   },

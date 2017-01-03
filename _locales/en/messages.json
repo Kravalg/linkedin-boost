@@ -11,6 +11,12 @@
   "page": {
     "message": "page"
   },
+  "filters": {
+    "message": "Filters"
+  },
+  "profession": {
+    "message": "Profession"
+  },
   "total_invited": {
     "message": "Total invited:"
   },

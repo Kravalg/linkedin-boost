@@ -92,11 +92,45 @@
         </div>
 
         <div id="add_contacts" class="hide-block">
+
+            <div id="filters" class="panel panel-info can-toggle">
+                <div class="panel-heading pointer">
+                    <span class="pull-left" data-translation="filters"></span>
+                    <span id="number_activated_filters" class="parenthesis pull-left">0</span>
+                    <span class="pull-right">
+                        <span class="caret"></span>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-body hide-block">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="profession" class="col-md-2 control-label" data-translation="profession"></label>
+
+                            <div class="togglebutton pull-right">
+                                <label>
+                                    <input id="professionFilterStatus" type="checkbox">
+                                </label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <input
+                                        data-translation="profession"
+                                        data-translation-attr="placeholder"
+                                        type="text"
+                                        class="form-control filter"
+                                        id="profession">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="panel panel-info can-toggle">
                 <div class="panel-heading pointer">
                     <span class="pull-left" data-translation="add_contacts"></span>
                     <span class="pull-right">
-                        <span class="caret"></span>
+                        <span class="dropup caret"></span>
                     </span>
                     <div class="clearfix"></div>
                 </div>
@@ -112,12 +146,13 @@
                     <span id="total_added_number" class="text-bold"></span>
                 </div>
             </div>
+
             <div id="results" class="panel panel-info hide-block can-toggle">
                 <div class="panel-heading pointer">
                     <span class="pull-left" data-translation="results"></span>
-                    <span id="number_invited_now" class="pull-left hide-block">0</span>
+                    <span id="number_invited_now" class="parenthesis pull-left hide-block">0</span>
                     <span class="pull-right">
-                        <span class="caret"></span>
+                        <span class="dropup caret"></span>
                     </span>
                     <div class="clearfix"></div>
                 </div>
@@ -135,6 +170,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <footer>

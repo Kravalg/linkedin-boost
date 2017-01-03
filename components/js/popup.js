@@ -15,20 +15,21 @@ function isTabLinkedinPymk (tab) {
   return tab.url.indexOf('linkedin.com/people/pymk') + 1;
 }
 
-function sendMessageForAddContacts (tab, contactsNumber) {
+function sendMessageForAddContacts (tab, contactsNumber, filters) {
     chrome.tabs.sendMessage(
         tab.id,
         {
             action: 'add_contacts',
-            contactsNumber: contactsNumber
+            contactsNumber: contactsNumber,
+            filters: filters
         }
     );
 }
 
-function addContacts (contactsNumber) {
+function addContacts (contactsNumber, filters) {
     getCurrentTab(function(currentTab) {
         if (isTabLinkedin(currentTab)) {
-            sendMessageForAddContacts(currentTab, contactsNumber);
+            sendMessageForAddContacts(currentTab, contactsNumber, filters);
         }
     });
 }
@@ -58,8 +59,17 @@ function generateLinks () {
 }
 
 function translatePage () {
+    var translation, attr;
+
     $('[data-translation]').each(function () {
-        this.textContent = chrome.i18n.getMessage(this.getAttribute('data-translation'));
+        translation = this.getAttribute('data-translation');
+        attr = this.getAttribute('data-translation-attr');
+
+        if (attr !== null) {
+            this.setAttribute(attr, chrome.i18n.getMessage(translation));
+        } else {
+            this.textContent = chrome.i18n.getMessage(translation);
+        }
     });
 }
 
@@ -147,19 +157,60 @@ function generateListOfInvitedContacts (data) {
     }
 }
 
+function showNumOfActiveFilters () {
+    var numOfActiveFilters = 0;
+
+    $.each($('#filters .togglebutton [type="checkbox"]'), function (key, el) {
+        if (el.checked) {
+            numOfActiveFilters++;
+        }
+    });
+
+    $('#number_activated_filters').text(numOfActiveFilters);
+}
+
+function filterListeners () {
+    $('#profession').keyup(function () {
+        if (this.value == '') {
+            $('#professionFilterStatus').prop('checked', false);
+        } else {
+            $('#professionFilterStatus').prop('checked', true);
+        }
+
+        showNumOfActiveFilters();
+    });
+
+    $('#filters .togglebutton [type="checkbox"]').change(showNumOfActiveFilters);
+}
+
+function getFilters () {
+    var filters = {};
+
+    $.each($('#filters .filter'), function (key, el) {
+        if (el.value !== '') {
+            filters[el.getAttribute('id')] = el.value;
+        }
+    });
+
+    return $.isEmptyObject(filters) ? null : filters;
+}
+
 $(function() {
     translatePage();
     generateLinks();
     generateSocialButtons();
-    generateTogglePanels();
 
     getCurrentTab(function(currentTab) {
         if (isTabLinkedinPymk(currentTab)) {
             $('#add_contacts').show();
+
             $('[data-add-contacts]').click(function () {
                 buttonLoading(this);
-                addContacts(this.getAttribute('data-add-contacts'));
+                addContacts(this.getAttribute('data-add-contacts'), getFilters());
             });
+
+            generateTogglePanels();
+            filterListeners();
             updateNumberOfTotalAdded(LocalStorage.app.totalAdded);
         } else if (isTabLinkedin(currentTab)) {
             $('#other_linkedin').show();
@@ -167,6 +218,8 @@ $(function() {
             $('#not_linkedin').show();
         }
     });
+
+    $.material.init();
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
