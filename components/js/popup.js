@@ -184,15 +184,27 @@ function filterListeners () {
 }
 
 function getFilters () {
-    var filters = {};
+    var filters = {}, input;
 
-    $.each($('#filters .filter'), function (key, el) {
-        if (el.value !== '') {
-            filters[el.getAttribute('id')] = el.value;
+    $.each($('#filters .togglebutton [type="checkbox"]'), function (key, el) {
+        if (el.checked) {
+            input = $(el).parents('.form-group').find('.filter');
+
+            if ($(input).val() !== '') {
+                filters[$(input).attr('id')] = $(input).val();
+            }
         }
     });
 
     return $.isEmptyObject(filters) ? null : filters;
+}
+
+function showErrorNothingToAdding () {
+    $('#nothing_to_added').fadeIn(1000);
+
+    setTimeout(function () {
+        $('#nothing_to_added').fadeOut(2000);
+    }, 5000);
 }
 
 $(function() {
@@ -227,5 +239,11 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         updateNumberOfTotalAdded(message.data.allAdded);
         generateListOfInvitedContacts(message.data);
         buttonStopLoading();
+    }
+
+    if (message.action == 'nothing_to_added') {
+        updateNumberOfTotalAdded(0);
+        buttonStopLoading();
+        showErrorNothingToAdding();
     }
 });

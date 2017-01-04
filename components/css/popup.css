@@ -135,3 +135,8 @@ footer > div {
 .form-group label.control-label {
     margin-top: 0;
 }
+
+#nothing_to_added {
+    margin: 20px 0 0 0;
+    font-size: 12px;
+}

@@ -26,6 +26,9 @@
   "share_friends": {
     "message": "Share with your friends:"
   },
+  "nothing_to_added": {
+    "message": "Nothing has been found. Try to change the filters."
+  },
   "login": {
     "message": "Log in to"
   }

@@ -1,4 +1,4 @@
-const contactsNumOnOnePage = 15;
+const contactsNumOnOnePage = 15, numberOfRepeat = 10;
 
 function sendMessageToBackground (obj) {
     chrome.runtime.sendMessage(obj);
@@ -60,7 +60,11 @@ function onRequest(request, sender, sendResponse) {
             scrollDownFilters(
                 document.body.clientHeight,
                 request.filters,
-                request.contactsNumber,
+                {
+                    number: request.contactsNumber,
+                    prefer: request.contactsNumber,
+                    numberOfRepeat: 0
+                },
                 0
             );
         } else {
@@ -100,15 +104,35 @@ function isSearchedInString (str, search) {
 }
 
 function addContactsFilters(height, filters, needInvites, invited) {
+    needInvites.prefer = invited;
     invited = getInvitedNumber(filters);
 
+    console.log({
+        invited: invited,
+        prefer: needInvites.prefer,
+        needNumber: needInvites.number,
+        numberOfRepeat: needInvites.numberOfRepeat
+    });
+
     setTimeout(function () {
-        //if (invited < needInvites && height != document.body.clientHeight) {
-        if (invited < needInvites) {
+
+        if (invited < needInvites.number && needInvites.numberOfRepeat < numberOfRepeat) {
+            if (needInvites.prefer == invited) {
+                needInvites.numberOfRepeat++;
+            }
+
             scrollDownFilters(document.body.clientHeight, filters, needInvites, invited);
+        } else if (needInvites.numberOfRepeat == numberOfRepeat && invited == 0) {
+            sendMessageToBackground({
+                action: 'nothing_to_added',
+                message: {
+                    totalAdded: 0
+                }
+            });
         } else {
             sendRequest();
         }
+
     }, 1500);
 }
 
