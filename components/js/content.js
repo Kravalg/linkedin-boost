@@ -1,4 +1,4 @@
-const contactsNumOnOnePage = 15, numberOfRepeat = 10;
+const contactsNumOnOnePage = 15, numberOfRepeat = 5;
 
 function sendMessageToBackground (obj) {
     chrome.runtime.sendMessage(obj);
@@ -96,6 +96,16 @@ function getInvitedNumber (filters) {
     return numberFoundContacts;
 }
 
+function getAllNumber () {
+    var allNumber = 0;
+
+    eachContactsList(function() {
+        allNumber++;
+    });
+
+    return allNumber;
+}
+
 function isSearchedInString (str, search) {
     str = str.toLowerCase();
     search = search.toLowerCase();
@@ -104,36 +114,41 @@ function isSearchedInString (str, search) {
 }
 
 function addContactsFilters(height, filters, needInvites, invited) {
+    var all = getAllNumber();
     needInvites.prefer = invited;
     invited = getInvitedNumber(filters);
 
-    console.log({
-        invited: invited,
-        prefer: needInvites.prefer,
-        needNumber: needInvites.number,
-        numberOfRepeat: needInvites.numberOfRepeat
-    });
+    if (invited !== 0 && invited == all) {
+        getInvitedNumber(filters);
+        sendRequest();
 
-    setTimeout(function () {
+        console.log({
+            invited: invited,
+            all: all
+        });
+    } else {
+        setTimeout(function () {
 
-        if (invited < needInvites.number && needInvites.numberOfRepeat < numberOfRepeat) {
-            if (needInvites.prefer == invited) {
-                needInvites.numberOfRepeat++;
+            if (invited < needInvites.number && needInvites.numberOfRepeat < numberOfRepeat) {
+                if (needInvites.prefer == invited && invited == 0) {
+                    needInvites.numberOfRepeat++;
+                }
+
+                scrollDownFilters(document.body.clientHeight, filters, needInvites, invited);
+            } else if (needInvites.numberOfRepeat == numberOfRepeat && invited == 0) {
+                sendMessageToBackground({
+                    action: 'nothing_to_added',
+                    message: {
+                        totalAdded: 0
+                    }
+                });
+            } else {
+                getInvitedNumber(filters);
+                sendRequest();
             }
 
-            scrollDownFilters(document.body.clientHeight, filters, needInvites, invited);
-        } else if (needInvites.numberOfRepeat == numberOfRepeat && invited == 0) {
-            sendMessageToBackground({
-                action: 'nothing_to_added',
-                message: {
-                    totalAdded: 0
-                }
-            });
-        } else {
-            sendRequest();
-        }
-
-    }, 1500);
+        }, 1500);
+    }
 }
 
 function scrollDownFilters(height, filters, needInvites, invited){
