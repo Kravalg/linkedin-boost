@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Linkedin Boost",
   "description": "This Chrome extension helps you to add new contacts in the social network LinkedIn",
-  "version": "0.3",
+  "version": "0.4",
   "default_locale": "en",
   "icons": {
     "128": "components/icon.png"
@@ -19,7 +19,7 @@
     "storage"
   ],
   "content_scripts": [{
-    "matches": ["*://www.linkedin.com/people/pymk/*", "*://www.linkedin.com/people/pymk?*"],
+    "matches": ["*://www.linkedin.com/people/pymk/*", "*://www.linkedin.com/people/pymk?*", "*://www.linkedin.com/mynetwork*"],
     "js": ["bower_components/jquery/dist/jquery.min.js", "components/js/class.localstorage.js", "components/js/content.js"]
   }]
 }

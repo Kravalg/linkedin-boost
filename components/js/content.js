@@ -1,5 +1,9 @@
 const contactsNumOnOnePage = 15, numberOfRepeat = 5;
 
+function isPageNewLinkedin () {
+    return window.location.href.indexOf('linkedin.com/mynetwork') + 1;
+}
+
 function sendMessageToBackground (obj) {
     chrome.runtime.sendMessage(obj);
 }
@@ -15,7 +19,7 @@ function addContacts(height, countOfPagesScrolled) {
         } else {
             sendRequest();
         }
-    }, 1500);
+    }, 2000);
 }
 
 function scrollDown(height, countOfPagesScrolled){
@@ -27,18 +31,37 @@ function sendRequest(){
     var contactsNum = 1;
     var addedContacts = [];
 
-    eachContactsList(function() {
-        jQuery(this).click();
+    if (isPageNewLinkedin()) {
+        eachContactsList(function() {
+            jQuery(this).click();
 
-        addedContacts[contactsNum] = {
-            initials: jQuery(this).parents('.card-wrapper').find('.picture img').attr('alt'),
-            title: jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'),
-            img: jQuery(this).parents('.card-wrapper').find('.picture img').attr('src'),
-            link: jQuery(this).parents('.card-wrapper').find('.picture a').attr('href')
-        };
+            addedContacts[contactsNum] = {
+                initials: jQuery(this).parents('.mn-person-card.pymk-card')
+                    .find('.mn-person-info__name.mn-person-info--has-hover')
+                    .text(),
+                title: jQuery(this).parents('.mn-person-card.pymk-card')
+                    .find('.mn-person-info__occupation')
+                    .text(),
+                img: jQuery(this).parents('.mn-person-card.pymk-card').find('.mn-person-info__picture.ember-view > img').attr('src'),
+                link: jQuery(this).parents('.mn-person-card.pymk-card').find('.mn-person-info__picture.ember-view').attr('href')
+            };
 
-        contactsNum++;
-    });
+            contactsNum++;
+        });
+    } else {
+        eachContactsList(function() {
+            jQuery(this).click();
+
+            addedContacts[contactsNum] = {
+                initials: jQuery(this).parents('.card-wrapper').find('.picture img').attr('alt'),
+                title: jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'),
+                img: jQuery(this).parents('.card-wrapper').find('.picture img').attr('src'),
+                link: jQuery(this).parents('.card-wrapper').find('.picture a').attr('href')
+            };
+
+            contactsNum++;
+        });
+    }
 
     sendMessageToBackground({
         action: 'added_contacts',
@@ -75,7 +98,11 @@ function onRequest(request, sender, sendResponse) {
 }
 
 function eachContactsList(callback) {
-    jQuery.each( jQuery('.card-wrapper .bt-request-buffed'), callback);
+    if (isPageNewLinkedin()) {
+        jQuery.each( jQuery('.mn-person-card__person-btn-ext.button-secondary-medium'), callback);
+    } else {
+        jQuery.each( jQuery('.card-wrapper .bt-request-buffed'), callback);
+    }
 }
 
 function getInvitedNumber (filters) {
@@ -85,10 +112,20 @@ function getInvitedNumber (filters) {
         var filter = filters[key];
 
         eachContactsList(function() {
-            if (isSearchedInString(jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'), filter)) {
-                numberFoundContacts++;
+            if (isPageNewLinkedin()) {
+                if (isSearchedInString(jQuery(this).parents('.mn-person-card.pymk-card')
+                        .find('.mn-person-info__occupation')
+                        .text(), filter)) {
+                    numberFoundContacts++;
+                } else {
+                    jQuery(this).parents('.mn-person-card.pymk-card').remove();
+                }
             } else {
-                jQuery(this).parents('.pymk-card').remove();
+                if (isSearchedInString(jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'), filter)) {
+                    numberFoundContacts++;
+                } else {
+                    jQuery(this).parents('.pymk-card').remove();
+                }
             }
         });
     }

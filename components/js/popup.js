@@ -12,7 +12,7 @@ function isTabLinkedin (tab) {
 }
 
 function isTabLinkedinPymk (tab) {
-  return tab.url.indexOf('linkedin.com/people/pymk') + 1;
+  return (tab.url.indexOf('linkedin.com/people/pymk') + 1) || (tab.url.indexOf('linkedin.com/mynetwork') + 1);
 }
 
 function sendMessageForAddContacts (tab, contactsNumber, filters) {
