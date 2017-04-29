@@ -1,5 +1,25 @@
 const contactsNumOnOnePage = 15, numberOfRepeat = 5;
 
+function getDOMObjects (obj) {
+    var personCardSelector = '.mn-person-card';
+
+    return {
+        initials: jQuery(obj).parents(personCardSelector)
+            .find('.mn-person-info__name')
+            .text(),
+        title: jQuery(obj).parents(personCardSelector)
+            .find('.mn-person-info__occupation')
+            .text(),
+        img: jQuery(obj).parents(personCardSelector)
+            .find('.mn-person-info__picture.ember-view > img')
+            .attr('src'),
+        link: jQuery(obj).parents(personCardSelector)
+            .find('.mn-person-info__picture.ember-view')
+            .attr('href'),
+        personCardSelector: personCardSelector
+    };
+}
+
 function isPageNewLinkedin () {
     return window.location.href.indexOf('linkedin.com/mynetwork') + 1;
 }
@@ -35,16 +55,7 @@ function sendRequest(){
         eachContactsList(function() {
             jQuery(this).click();
 
-            addedContacts[contactsNum] = {
-                initials: jQuery(this).parents('.mn-person-card.pymk-card')
-                    .find('.mn-person-info__name.mn-person-info--has-hover')
-                    .text(),
-                title: jQuery(this).parents('.mn-person-card.pymk-card')
-                    .find('.mn-person-info__occupation')
-                    .text(),
-                img: jQuery(this).parents('.mn-person-card.pymk-card').find('.mn-person-info__picture.ember-view > img').attr('src'),
-                link: jQuery(this).parents('.mn-person-card.pymk-card').find('.mn-person-info__picture.ember-view').attr('href')
-            };
+            addedContacts[contactsNum] = getDOMObjects(this);
 
             contactsNum++;
         });
@@ -113,12 +124,14 @@ function getInvitedNumber (filters) {
 
         eachContactsList(function() {
             if (isPageNewLinkedin()) {
-                if (isSearchedInString(jQuery(this).parents('.mn-person-card.pymk-card')
-                        .find('.mn-person-info__occupation')
-                        .text(), filter)) {
+                if (isSearchedInString(getDOMObjects(this).title, filter)) {
                     numberFoundContacts++;
                 } else {
-                    jQuery(this).parents('.mn-person-card.pymk-card').remove();
+                    console.log('remove:');
+                    console.log(getDOMObjects().personCardSelector);
+                    console.log(getDOMObjects(this).title);
+                    console.log(filter);
+                    jQuery(this).parents(getDOMObjects().personCardSelector).remove();
                 }
             } else {
                 if (isSearchedInString(jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'), filter)) {
