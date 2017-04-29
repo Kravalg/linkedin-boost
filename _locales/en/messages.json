@@ -29,6 +29,9 @@
   "nothing_to_added": {
     "message": "Nothing has been found. Try to change the filters."
   },
+  "have_avatar": {
+    "message": "Profile with avatar"
+  },
   "login": {
     "message": "Log in to"
   }

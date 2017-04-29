@@ -15,6 +15,10 @@ function isTabLinkedinPymk (tab) {
   return (tab.url.indexOf('linkedin.com/people/pymk') + 1) || (tab.url.indexOf('linkedin.com/mynetwork') + 1);
 }
 
+function isTabLinkedinSearch (tab) {
+  return tab.url.indexOf('linkedin.com/search/results/people') + 1;
+}
+
 function sendMessageForAddContacts (tab, contactsNumber, filters) {
     chrome.tabs.sendMessage(
         tab.id,
@@ -163,6 +167,9 @@ function showNumOfActiveFilters () {
     $.each($('#filters .togglebutton [type="checkbox"]'), function (key, el) {
         if (el.checked) {
             numOfActiveFilters++;
+            $(el).parents('.form-group').addClass('active-filter');
+        } else {
+            $(el).parents('.form-group').removeClass('active-filter');
         }
     });
 
@@ -224,6 +231,7 @@ $(function() {
             generateTogglePanels();
             filterListeners();
             updateNumberOfTotalAdded(LocalStorage.app.totalAdded);
+            showNumOfActiveFilters();
         } else if (isTabLinkedin(currentTab)) {
             $('#other_linkedin').show();
         } else {

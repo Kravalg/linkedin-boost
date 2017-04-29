@@ -193,4 +193,8 @@ function scrollDownFilters(height, filters, needInvites, invited){
     addContactsFilters(height, filters, needInvites, invited);
 }
 
+function filterItem (item, filters) {
+
+}
+
 chrome.runtime.onMessage.addListener(onRequest);

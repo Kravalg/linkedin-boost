@@ -140,3 +140,7 @@ footer > div {
     margin: 20px 0 0 0;
     font-size: 12px;
 }
+
+.active-filter label.control-label {
+    color: #009688;
+}
