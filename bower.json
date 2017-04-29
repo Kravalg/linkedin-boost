@@ -16,6 +16,7 @@
   "dependencies": {
     "jquery": "^2.2.4",
     "bootstrap": "^3.3.7",
+    "angular": "^1.6.4",
     "components-font-awesome": "^4.7.0",
     "jssocials": "^1.4.0"
   },
