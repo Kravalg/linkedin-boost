@@ -1,7 +1,7 @@
 const contactsNumOnOnePage = 15, numberOfRepeat = 5;
 
 function getDOMObjects (obj) {
-    var personCardSelector = '.mn-person-card';
+    var personCardSelector = '.mn-pymk-list__card';
 
     return {
         initials: jQuery(obj).parents(personCardSelector)
@@ -11,17 +11,13 @@ function getDOMObjects (obj) {
             .find('.mn-person-info__occupation')
             .text(),
         img: jQuery(obj).parents(personCardSelector)
-            .find('.mn-person-info__picture.ember-view > img')
+            .find('[data-control-name="pymk_profile"] > img')
             .attr('src'),
         link: jQuery(obj).parents(personCardSelector)
-            .find('.mn-person-info__picture.ember-view')
+            .find('.mn-person-info__link')
             .attr('href'),
         personCardSelector: personCardSelector
     };
-}
-
-function isPageNewLinkedin () {
-    return window.location.href.indexOf('linkedin.com/mynetwork') + 1;
 }
 
 function sendMessageToBackground (obj) {
@@ -51,28 +47,13 @@ function sendRequest(){
     var contactsNum = 1;
     var addedContacts = [];
 
-    if (isPageNewLinkedin()) {
-        eachContactsList(function() {
-            jQuery(this).click();
+    eachContactsList(function() {
+        jQuery(this).click();
 
-            addedContacts[contactsNum] = getDOMObjects(this);
+        addedContacts[contactsNum] = getDOMObjects(this);
 
-            contactsNum++;
-        });
-    } else {
-        eachContactsList(function() {
-            jQuery(this).click();
-
-            addedContacts[contactsNum] = {
-                initials: jQuery(this).parents('.card-wrapper').find('.picture img').attr('alt'),
-                title: jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'),
-                img: jQuery(this).parents('.card-wrapper').find('.picture img').attr('src'),
-                link: jQuery(this).parents('.card-wrapper').find('.picture a').attr('href')
-            };
-
-            contactsNum++;
-        });
-    }
+        contactsNum++;
+    });
 
     sendMessageToBackground({
         action: 'added_contacts',
@@ -109,11 +90,7 @@ function onRequest(request, sender, sendResponse) {
 }
 
 function eachContactsList(callback) {
-    if (isPageNewLinkedin()) {
-        jQuery.each( jQuery('.mn-person-card__person-btn-ext.button-secondary-medium'), callback);
-    } else {
-        jQuery.each( jQuery('.card-wrapper .bt-request-buffed'), callback);
-    }
+    jQuery.each( jQuery('[data-control-name="invite"]'), callback);
 }
 
 function getInvitedNumber (filters) {
@@ -123,22 +100,14 @@ function getInvitedNumber (filters) {
         var filter = filters[key];
 
         eachContactsList(function() {
-            if (isPageNewLinkedin()) {
-                if (isSearchedInString(getDOMObjects(this).title, filter)) {
-                    numberFoundContacts++;
-                } else {
-                    console.log('remove:');
-                    console.log(getDOMObjects().personCardSelector);
-                    console.log(getDOMObjects(this).title);
-                    console.log(filter);
-                    jQuery(this).parents(getDOMObjects().personCardSelector).remove();
-                }
+            if (isSearchedInString(getDOMObjects(this).title, filter)) {
+                numberFoundContacts++;
             } else {
-                if (isSearchedInString(jQuery(this).parents('.card-wrapper').find('.headline > span').attr('title'), filter)) {
-                    numberFoundContacts++;
-                } else {
-                    jQuery(this).parents('.pymk-card').remove();
-                }
+                console.log('remove:');
+                console.log(getDOMObjects().personCardSelector);
+                console.log(getDOMObjects(this).title);
+                console.log(filter);
+                jQuery(this).parents(getDOMObjects().personCardSelector).remove();
             }
         });
     }
