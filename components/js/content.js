@@ -5,16 +5,16 @@ function getDOMObjects (obj) {
 
     return {
         initials: jQuery(obj).parents(personCardSelector)
-            .find('.mn-person-info__name')
+            .find('.pymk-card__name')
             .text(),
         title: jQuery(obj).parents(personCardSelector)
-            .find('.mn-person-info__occupation')
+            .find('.pymk-card__occupation')
             .text(),
         img: jQuery(obj).parents(personCardSelector)
-            .find('[data-control-name="pymk_profile"] > img')
+            .find('.pymk-card__image > img')
             .attr('src'),
         link: jQuery(obj).parents(personCardSelector)
-            .find('.mn-person-info__link')
+            .find('.pymk-card__link')
             .attr('href'),
         personCardSelector: personCardSelector
     };

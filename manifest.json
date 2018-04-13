@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Linkens",
   "description": "This Chrome extension helps you to add new contacts in the social network LinkedIn",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "default_locale": "en",
   "icons": {
     "128": "components/icon.png"
