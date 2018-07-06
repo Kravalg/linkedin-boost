@@ -1,8 +1,8 @@
 const contactsNumOnOnePage = 15, numberOfRepeat = 5;
 
-function getDOMObjects (obj) {
-    var personCardSelector = '.mn-pymk-list__card';
+var personCardSelector = '.mn-discovery-person-card';
 
+function getPersonCardOld (obj) {
     return {
         initials: jQuery(obj).parents(personCardSelector)
             .find('.pymk-card__name')
@@ -15,6 +15,33 @@ function getDOMObjects (obj) {
             .attr('src'),
         link: jQuery(obj).parents(personCardSelector)
             .find('.pymk-card__link')
+            .attr('href'),
+        personCardSelector: personCardSelector
+    };
+}
+
+function getDOMObjects (obj) {
+
+    var oldPersonCard = getPersonCardOld(obj);
+
+    console.log(oldPersonCard);
+
+    if (oldPersonCard.initials !== '' && oldPersonCard.link !== undefined) {
+        return oldPersonCard;
+    }
+
+    return {
+        initials: jQuery(obj).parents(personCardSelector)
+            .find('.mn-discovery-person-card__name')
+            .text(),
+        title: jQuery(obj).parents(personCardSelector)
+            .find('.mn-discovery-person-card__occupation')
+            .text(),
+        img: jQuery(obj).parents(personCardSelector)
+            .find('.mn-discovery-person-card__image > img')
+            .attr('src'),
+        link: jQuery(obj).parents(personCardSelector)
+            .find('.mn-discovery-person-card__link')
             .attr('href'),
         personCardSelector: personCardSelector
     };
